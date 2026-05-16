@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Intranet Escolar</title>
+
+    <link rel="stylesheet" href="style.css" />
+
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  </head>
+
+  <body>
+    <!-- LOGIN -->
+
+    <div class="contenedor" id="login">
+      <h1>Intranet Escolar</h1>
+
+      <p>Accede al sistema institucional</p>
+
+      <label>Ingresar RUT</label>
+
+      <input
+        type="text"
+        maxlength="12"
+        placeholder="12.345.678-9"
+        oninput="formatearRut(this)"
+      />
+
+      <label>Contraseña</label>
+
+      <div class="password-box">
+        <input
+          type="password"
+          id="passwordLogin"
+          placeholder="Ingresa tu contraseña"
+        />
+
+        <span class="mostrar" onclick="mostrarPassword('passwordLogin')">
+          👁
+        </span>
+      </div>
+
+      <p id="caps">⚠ Bloq Mayús activado</p>
+
+      <div class="extras">
+        <span class="olvide" onclick="mostrarRecuperar()">
+          ¿Olvidaste tu contraseña?
+        </span>
+      </div>
+
+      <div
+        class="g-recaptcha"
+        data-sitekey="6Lew4-osAAAAAJsaHfs9ZhpvVPw32MZY9JZDBozV"
+      ></div>
+
+      <button class="btn-login" onclick="validarCaptchaLogin()">
+        Iniciar Sesión
+      </button>
+
+      <div class="link" onclick="mostrarRegistro()">Registrarse</div>
+    </div>
+
+    <!-- REGISTRO -->
+
+    <div id="registro">
+      <h2>Crear Cuenta</h2>
+
+      <p>Completa los datos para registrarte</p>
+
+      <form class="form-grid">
+        <div>
+          <label>Nombre</label>
+
+          <input type="text" placeholder="Ingresa tu nombre" />
+        </div>
+
+        <div>
+          <label>Apellidos</label>
+
+          <input type="text" placeholder="Ingresa tus apellidos" />
+        </div>
+
+        <div>
+          <label>Correo</label>
+
+          <input
+            type="email"
+            placeholder="correo@ejemplo.cl"
+            onkeyup="validarCorreo(this.value)"
+          />
+
+          <p id="correoValido"></p>
+        </div>
+
+        <div>
+          <label>Fecha de nacimiento</label>
+
+          <input type="date" />
+        </div>
+
+        <div>
+          <label>RUT</label>
+
+          <input
+            type="text"
+            maxlength="12"
+            placeholder="12.345.678-9"
+            oninput="formatearRut(this)"
+          />
+        </div>
+
+        <div>
+          <label>Rol</label>
+
+          <select>
+            <option>Estudiante</option>
+
+            <option>Profesor</option>
+
+            <option>Administrador</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Contraseña</label>
+
+          <div class="password-box">
+            <input
+              type="password"
+              id="passwordRegistro"
+              placeholder="Crea una contraseña"
+              onkeyup="seguridadPassword(this.value)"
+            />
+
+            <span class="mostrar" onclick="mostrarPassword('passwordRegistro')">
+              👁
+            </span>
+          </div>
+
+          <p id="seguridad"></p>
+        </div>
+
+        <div>
+          <label>Repetir Contraseña</label>
+
+          <div class="password-box">
+            <input
+              type="password"
+              id="passwordRepetir"
+              placeholder="Repite tu contraseña"
+            />
+
+            <span class="mostrar" onclick="mostrarPassword('passwordRepetir')">
+              👁
+            </span>
+          </div>
+        </div>
+      </form>
+
+      <div
+        class="g-recaptcha"
+        data-sitekey="6Lew4-osAAAAAJsaHfs9ZhpvVPw32MZY9JZDBozV"
+      ></div>
+
+      <button class="btn-registro" onclick="validarCaptchaRegistro()">
+        Registrarse
+      </button>
+
+      <div class="link" onclick="mostrarLogin()">
+        ← Volver al inicio de sesión
+      </div>
+    </div>
+
+    <!-- RECUPERAR -->
+
+    <div class="contenedor" id="recuperar">
+      <h2>Recuperar Contraseña</h2>
+
+      <p>Ingresa el correo y RUT registrados</p>
+
+      <label>Correo Electrónico</label>
+
+      <input type="email" placeholder="correo@ejemplo.cl" />
+
+      <label>RUT</label>
+
+      <input
+        type="text"
+        maxlength="12"
+        placeholder="12.345.678-9"
+        oninput="formatearRut(this)"
+      />
+
+      <div
+        class="g-recaptcha"
+        data-sitekey="6Lew4-osAAAAAJsaHfs9ZhpvVPw32MZY9JZDBozV"
+      ></div>
+
+      <button class="btn-login" onclick="validarCaptchaRecuperar()">
+        Enviar Enlace
+      </button>
+
+      <div class="link" onclick="mostrarLogin()">
+        ← Volver al inicio de sesión
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
